@@ -6,11 +6,12 @@
     systemd.enable = false;
 
     settings = {
+      # font-family = "Ioskeley Mono Term";
       font-family = "Iosevka Term Nerd Font Mono";
       command = "nu --interactive";
       shell-integration = "nushell";
       theme = "light:Alabaster,dark:Gruvbox Dark Hard";
-      font-size = 12;
+      font-size = 10;
       adjust-cell-height = "5%";
       adjust-cell-width = "0%";
       window-padding-x = 5;
@@ -21,7 +22,7 @@
 
       window-width = 80;
       window-height = 40;
-      window-decoration = "none";
+      # window-decoration = "none";
       copy-on-select = true;
     };
   };
