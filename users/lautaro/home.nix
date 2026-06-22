@@ -6,9 +6,16 @@
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
     ripgrep
+    alacritty
+    btop
+    libjxl
+    libavif
+    zoom-us
+    zotero
     fd
     eza
     tree
@@ -20,7 +27,6 @@
     kitty
     zoxide
     yazi
-    sioyek
   ];
 
   imports = [

@@ -22,7 +22,7 @@
         helper = "!/usr/bin/gh auth git-credential";
       };
 
-      core.editor = "${pkgs.neovim}/bin/hx";
+      core.editor = "hx";
 
       pull.rebase = true;
 
