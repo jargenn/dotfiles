@@ -13,6 +13,7 @@
     alacritty
     btop
     libjxl
+    zathura
     libavif
     zoom-us
     zotero

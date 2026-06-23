@@ -7,7 +7,7 @@
     settings = {
       theme = {
         dark = "custom";
-        light = "wolf-alabaster-light";
+        light = "everforest_light";
       };
       editor = {
         auto-format = true;
