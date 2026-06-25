@@ -10,9 +10,10 @@
 
   home.packages = with pkgs; [
     ripgrep
-    alacritty
     btop
     libjxl
+    papers
+    imagemagick
     zathura
     libavif
     zoom-us
@@ -38,5 +39,6 @@
     ./modules/direnv.nix
     ./modules/ghostty.nix
     ./modules/tmux.nix
+    ./modules/alacritty.nix
   ];
 }

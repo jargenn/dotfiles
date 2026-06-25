@@ -3,13 +3,14 @@
 {
   programs.tmux = {
     enable = true;
-
-    terminal = "ghostty";
+    terminal = "xterm-256color";
+    shell = "${pkgs.nushell}/bin/nu"; 
+  
     extraConfig = ''
-      # Terminal overrides
-      set-option -ga terminal-overrides ",ghostty:Tc"
-
+      set-option -ga terminal-overrides ",xterm-256color:Tc"
+      # 
       # Prefix
+      # 
       set -g prefix C-a
       unbind C-b
       bind C-a send-prefix
