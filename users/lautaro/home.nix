@@ -13,6 +13,7 @@
     btop
     libjxl
     papers
+    pgcli
     imagemagick
     zathura
     libavif

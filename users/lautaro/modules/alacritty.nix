@@ -12,11 +12,9 @@
         size = 12.0;
       };
 
-      terminal = {
-      shell = {
-        program = "nu";
-        args = [ "--interactive" ];
-      };
+      terminal.shell = {
+        program = "${pkgs.tmux}/bin/tmux";
+        # args = [ "new-session" "-A" "-s" "main" ];
       };
 
       window = {
