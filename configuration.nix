@@ -103,6 +103,11 @@
 ];
 
   environment.systemPackages = with pkgs; [
+      kdePackages.kio-extras
+      usbutils
+  android-file-transfer
+  libmtp
+
      gimp
      wl-clipboard
      ghostty
@@ -110,6 +115,7 @@
      wofi
      spotify
      discord
+     chafa
      chromium
 
      gh
@@ -120,6 +126,8 @@
      xdg-utils
      loupe
      vlc
+     darktable
+     rawtherapee
   ];
   services.openssh.enable = true;
   system.stateVersion = "26.05";

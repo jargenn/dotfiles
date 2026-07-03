@@ -18,7 +18,7 @@
         mouse = false;
         rulers = [ 80 ];
         text-width = 80;
-        end-of-line-diagnostics = "hint";
+        end-of-line-diagnostics = "disable";
         inline-diagnostics.cursor-line = "disable";
 
         shell = [
@@ -93,6 +93,12 @@
         normal = {
           K = "hover";
           F8 = ":toggle lsp.display-inlay-hints";
+
+          C-d = [
+            ":toggle end-of-line-diagnostics disable hint"
+            ":toggle inline-diagnostics.cursor-line disable hint"
+          ];
+
           F1 = ":config-reload";
 
           X = [
@@ -114,13 +120,6 @@
             "delete_selection"
             "move_line_up"
             "paste_before"
-          ];
-
-          C-g = [
-            ":new"
-            ":insert-output lazygit"
-            ":buffer-close!"
-            ":redraw"
           ];
 
           space = {

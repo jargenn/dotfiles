@@ -1,5 +1,7 @@
 { pkgs, inputs, ... }:
 
+let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
+
 {
   home.username = "lautaro";
   home.homeDirectory = "/home/lautaro";
@@ -10,13 +12,12 @@
 
   home.packages = with pkgs; [
     ripgrep
+    repgrep
+    wireshark
     btop
-    libjxl
     papers
     pgcli
     imagemagick
-    zathura
-    libavif
     zoom-us
     zotero
     fd
@@ -29,8 +30,7 @@
     atuin
     kitty
     zoxide
-    yazi
-  ];
+  ] ++ [ unstable.opencode ];
 
   imports = [
     ./modules/git.nix
