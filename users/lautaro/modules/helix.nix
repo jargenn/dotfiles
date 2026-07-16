@@ -155,6 +155,9 @@
     inherits = "gruvbox"
 
     "ui.background" = { bg = "#181818" }
+    "comment" = { fg = "#fa9239" }
+    "line_comment" = { fg = "#fa9239" }
+    "doc_comment" = { fg = "#fa9239" }
   '';
 
   xdg.configFile."helix/languages.toml".text = ''
