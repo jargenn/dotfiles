@@ -4,7 +4,8 @@
   programs.tmux = {
     enable = true;
     terminal = "xterm-256color";
-    shell = "${pkgs.nushell}/bin/nu"; 
+    shell = "${pkgs.fish}/bin/fish"; 
+
   
     extraConfig = ''
       set-option -ga terminal-overrides ",xterm-256color:Tc"
@@ -16,7 +17,7 @@
       bind C-a send-prefix
 
       # Reload config
-      bind r source-file ~/.tmux.conf
+      bind r source-file ~/.config/tmux/tmux.conf
 
       # Splits / windows
       bind | split-window -h -c "#{pane_current_path}"

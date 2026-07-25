@@ -12,3 +12,4 @@
     extraConfig = builtins.readFile ./config.nu;
   };
 }
+

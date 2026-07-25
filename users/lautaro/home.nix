@@ -16,8 +16,8 @@ let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
     wireshark
     btop
     papers
-    pgcli
     imagemagick
+    nil
     zoom-us
     zotero
     fd
@@ -27,15 +27,14 @@ let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
     curl
     unzip
     htop
-    atuin
     kitty
-    zoxide
   ] ++ [ unstable.opencode ];
 
   imports = [
     ./modules/git.nix
     ./modules/jj.nix
     ./modules/nushell.nix
+    ./modules/fish.nix
     ./modules/helix.nix
     ./modules/direnv.nix
     ./modules/ghostty.nix

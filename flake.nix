@@ -12,6 +12,7 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    jj-starship.url = "github:dmmulroy/jj-starship";
   };
 
   outputs =
@@ -19,6 +20,7 @@
       self,
       nixpkgs,
       home-manager,
+      jj-starship,
       ...
     }@inputs:
     let
@@ -30,7 +32,14 @@
 
       homeConfigurations = {
         "lautaro" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+
+            overlays = [
+              jj-starship.overlays.default
+            ];
+          };
+
           extraSpecialArgs = {
             inherit inputs;
           };

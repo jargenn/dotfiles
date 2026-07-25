@@ -15,7 +15,7 @@
           bufferline = "never";
         clipboard-provider = "wayland";
         line-number = "relative";
-        mouse = false;
+        mouse = true;
         rulers = [ 80 ];
         text-width = 80;
         end-of-line-diagnostics = "disable";
@@ -163,8 +163,13 @@
   xdg.configFile."helix/languages.toml".text = ''
     [[language]]
     name = "typescript"
-    language-servers = ["deno-lsp"]
+    language-servers = ["deno-lsp", "typescript-language-server"]
     auto-format = true
+
+    [language-server.typescript-language-server]
+    command = "typescript-language-server"
+    args = ["--stdio"]
+    config.hostInfo = "helix"
 
     [[language]]
     name = "ocaml"
@@ -174,6 +179,20 @@
     name = "tsx"
     language-servers = ["deno-lsp"]
     auto-format = true
+
+    [[language]]
+    name = "rust"
+    language-servers = ["rust-analyzer", "tracey"]
+    auto-format = true
+
+    [[language]]
+    name = "markdown"
+    language-servers = ["tracey"]
+    auto-format = true
+
+    [language-server.tracey]
+    command = "tracey"
+    args = ["lsp"]
 
     [[language]]
     name = "python"
