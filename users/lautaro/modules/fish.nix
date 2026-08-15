@@ -29,6 +29,7 @@
       jn = "jj new";
       jsm = "jj bookmark set main";
       jh = "jj log -r 'heads(all())'";
+      jt = "jj log -r 'tags()'";
       jjp = "jj git push";
 
       l = "eza";

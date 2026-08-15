@@ -158,18 +158,31 @@
     "comment" = { fg = "#fa9239" }
     "line_comment" = { fg = "#fa9239" }
     "doc_comment" = { fg = "#fa9239" }
+    "tracey.requirement_id" = { fg = "#181818" }
   '';
 
   xdg.configFile."helix/languages.toml".text = ''
     [[language]]
     name = "typescript"
-    language-servers = ["deno-lsp", "typescript-language-server"]
+    language-servers = ["typescript-language-server"]
+    # language-servers = ["deno-lsp", "typescript-language-server"]
     auto-format = true
 
+    [[language]]
+    name = "tsx"
+    scope = "source.tsx"
+    injection-regex = "(tsx)" # |typescript
+    language-id = "typescriptreact"
+    file-types = ["tsx"]
+    roots = [ "package.json", "tsconfig.json" ]
+    comment-token = "//"
+    block-comment-tokens = { start = "/*", end = "*/" }
+    language-servers = [ "typescript-language-server" ]
+    indent = { tab-width = 2, unit = "  " }
+
     [language-server.typescript-language-server]
-    command = "typescript-language-server"
-    args = ["--stdio"]
-    config.hostInfo = "helix"
+    command = "pnpm"
+    args = ["exec", "typescript-language-server", "--stdio"]
 
     [[language]]
     name = "ocaml"
@@ -182,6 +195,7 @@
 
     [[language]]
     name = "rust"
+    # language-servers = ["rust-glancer", "tracey"]
     language-servers = ["rust-analyzer", "tracey"]
     auto-format = true
 
@@ -189,6 +203,10 @@
     name = "markdown"
     language-servers = ["tracey"]
     auto-format = true
+
+    [language-server.rust-glancer]
+    command = "rust-glancer"
+    args = ["lsp"]
 
     [language-server.tracey]
     command = "tracey"

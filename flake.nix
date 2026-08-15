@@ -44,7 +44,9 @@
             inherit inputs;
           };
 
-          modules = [ ./users/lautaro/home.nix ];
+          modules = [
+            ./users/lautaro/home.nix
+          ];
         };
       };
     };

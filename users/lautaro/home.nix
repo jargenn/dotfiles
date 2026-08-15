@@ -5,7 +5,7 @@ let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
 {
   home.username = "lautaro";
   home.homeDirectory = "/home/lautaro";
-  home.stateVersion = "24.05";
+  home.stateVersion = "26.05";
 
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
@@ -33,11 +33,10 @@ let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
   imports = [
     ./modules/git.nix
     ./modules/jj.nix
-    ./modules/nushell.nix
     ./modules/fish.nix
     ./modules/helix.nix
+    ./modules/nvim.nix
     ./modules/direnv.nix
-    ./modules/ghostty.nix
     ./modules/tmux.nix
     ./modules/alacritty.nix
   ];
