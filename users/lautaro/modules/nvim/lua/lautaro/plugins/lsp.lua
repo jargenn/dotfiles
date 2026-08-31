@@ -114,7 +114,7 @@
 --     }
 -- end
 
--- return {
+return {
 --     {
 --         "neovim/nvim-lspconfig",
 --         dependencies = {
@@ -202,4 +202,4 @@
 --             require("ocaml").setup()
 --         end
 --     },
--- }
+ }

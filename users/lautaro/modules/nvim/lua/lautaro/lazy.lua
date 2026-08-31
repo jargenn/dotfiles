@@ -23,5 +23,6 @@ require("lazy").setup({
         import = "lautaro.plugins",
     },
     change_detection = { notify = false },
+    lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
     -- checker = { enabled = true },
 })

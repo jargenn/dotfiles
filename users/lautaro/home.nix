@@ -11,7 +11,9 @@ let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    tree-sitter
     ripgrep
+    fff
     repgrep
     wireshark
     btop
@@ -21,6 +23,8 @@ let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
     zoom-us
     zotero
     fd
+    gcc
+    lua-language-server
     eza
     tree
     wget

@@ -59,10 +59,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "LspAttach", "InsertLeave", "BufEnter" }, {
+vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LspCodelens", { clear = true }),
     callback = function(args)
-        local bufnr = args.buf or 0
-        vim.lsp.codelens.refresh({ bufnr = bufnr })
+        vim.lsp.codelens.enable(true, { bufnr = args.buf })
     end,
 })
