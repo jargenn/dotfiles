@@ -2,7 +2,13 @@ return {
     {
         "catgoose/nvim-colorizer.lua",
         event = "BufReadPre",
-        opts = { },
+        opts = {},
+    },
+    {
+        "j-hui/fidget.nvim",
+        opts = {
+            -- options
+        },
     },
     {
         'dmtrKovalenko/fff',
@@ -16,21 +22,23 @@ return {
         lazy = false,
         keys = {
             { "<leader>ff", function() require('fff').find_files() end, desc = 'FFFind files' },
-            { "<leader>fg", function() require('fff').live_grep() end, desc = 'LiFFFe grep' },
-            { "<leader>fz",
-            function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end,
-            desc = 'Live fffuzy grep',
+            { "<leader>fg", function() require('fff').live_grep() end,  desc = 'LiFFFe grep' },
+            {
+                "<leader>fz",
+                function() require('fff').live_grep({ grep = { modes = { 'fuzzy', 'plain' } } }) end,
+                desc = 'Live fffuzy grep',
             },
-            { "fw",
-            function() require('fff').live_grep_under_cursor() end,
-            mode = { 'n', 'x' },
-            desc = 'Search current word / selection',
+            {
+                "fw",
+                function() require('fff').live_grep_under_cursor() end,
+                mode = { 'n', 'x' },
+                desc = 'Search current word / selection',
             },
         },
     },
-    { "tpope/vim-fugitive",          enabled = true, event = "VeryLazy" },
-    { "f-person/git-blame.nvim",     enabled = true, event = "VeryLazy" },
-    { "tpope/vim-commentary",        enabled = true, event = "VeryLazy" },
+    { "tpope/vim-fugitive",      enabled = true, event = "VeryLazy" },
+    { "f-person/git-blame.nvim", enabled = true, event = "VeryLazy" },
+    { "tpope/vim-commentary",    enabled = true, event = "VeryLazy" },
     {
         "lewis6991/gitsigns.nvim",
         enabled = true,
