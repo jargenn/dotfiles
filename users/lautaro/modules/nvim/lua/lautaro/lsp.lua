@@ -61,17 +61,16 @@ vim.lsp.config("rust_analyzer", {
     },
 })
 
-vim.lsp.config("tracey", {
-    cmd = { "tracey", "lsp" },
-
-    filetypes = { "rust", "typescript", "markdown" },
-
-    root_markers = {
-        ".config/tracey/config.styx",
-    },
-})
-
 vim.lsp.enable("rust_analyzer")
+
+vim.lsp.config['tracey'] = {
+    cmd = { 'tracey', 'lsp' },
+    filetypes = { 'rust', 'typescript', 'python', 'go', 'markdown' },
+    root_markers = { '.config/tracey/config.styx' },
+}
+
+vim.lsp.enable('tracey')
+
 
 vim.lsp.config("ocamllsp", {
     cmd = { "ocamllsp" },
@@ -123,22 +122,4 @@ vim.lsp.config("ruff", {
 })
 
 vim.lsp.enable("ruff")
-
-local map = function(keys, func, desc)
-    vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-end
-
-map("<space>e", vim.diagnostic.open_float, "")
-map("K", vim.lsp.buf.hover, "[H]over")
-map("gS", vim.lsp.buf.signature_help, "[G]oto [S]ignature")
-map("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd")
-map("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove")
-map("<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, "[W]orkspace [L]ist")
-map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-map("<leader>a", vim.lsp.buf.code_action, "[C]ode [A]ction")
-map("<leader>fo", function()
-    vim.lsp.buf.format({ async = true })
-end, "[F]ormat")
 

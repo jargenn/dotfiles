@@ -65,3 +65,30 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.lsp.codelens.enable(true, { bufnr = args.buf })
     end,
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
+    callback = function(event)
+        local map = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, {
+                buffer = event.buf,
+                desc = "LSP: " .. desc,
+            })
+       end
+
+        map("<space>e", vim.diagnostic.open_float, "Open diagnostic")
+        map("K", vim.lsp.buf.hover, "Hover")
+        map("gS", vim.lsp.buf.signature_help, "Signature help")
+        map("<leader>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
+        map("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
+        map("<leader>wl", function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, "List workspace folders")
+        map("<leader>rn", vim.lsp.buf.rename, "Rename")
+        map("<leader>a", vim.lsp.buf.code_action, "Code action")
+        map("<leader>fo", function()
+            vim.lsp.buf.format({ async = true })
+        end, "Format")
+    end,
+})
+
