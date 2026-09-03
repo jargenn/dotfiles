@@ -16,11 +16,43 @@ vim.lsp.config("typescript-language-server", {
     root_markers = {
         "package.json",
         "tsconfig.json",
+    },
+})
+vim.lsp.enable("typescript-language-server")
+
+vim.lsp.config("deno-lsp", {
+    cmd = {
+        "deno",
+        "lsp",
+    },
+
+    filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+    },
+
+    root_markers = {
+        "deno.json",
+    },
+})
+vim.lsp.enable("deno-lsp")
+
+vim.lsp.config("vscode-css-languageserver", {
+    cmd = {
+        "vscode-css-languageserver",
+        "--stdio",
+    },
+
+    filetypes = {
+        "css",
+    },
+
+    root_markers = {
         ".git",
     },
 })
-
-vim.lsp.enable("typescript-language-server")
 
 vim.lsp.config("lua_ls", {
     cmd = { "lua-language-server" },

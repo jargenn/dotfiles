@@ -1,14 +1,24 @@
 return {
     {
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        config = function()
+            require("gruvbox").setup({
+                contrast = "hard"
+            })
+
+            local bg = os.date("*t").hour > 19 and "dark" or "light"
+            vim.o.background = bg
+            vim.cmd([[colorscheme gruvbox]])
+        end,
+    },
+    {
         "catgoose/nvim-colorizer.lua",
         event = "BufReadPre",
         opts = {},
     },
     {
         "j-hui/fidget.nvim",
-        opts = {
-            -- options
-        },
     },
     {
         'dmtrKovalenko/fff',
@@ -21,7 +31,7 @@ return {
         },
         lazy = false,
         keys = {
-            { "<leader>ff", function() require('fff').find_files() end, desc = 'FFFind files' },
+            { "ff",         function() require('fff').find_files() end, desc = 'FFFind files' },
             { "<leader>fg", function() require('fff').live_grep() end,  desc = 'LiFFFe grep' },
             {
                 "<leader>fz",

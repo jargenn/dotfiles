@@ -41,17 +41,18 @@ local function set_custom_highlights()
         fg = "#ff8c00",
     })
 
-    vim.api.nvim_set_hl(0, "@lsp.mod.mutable", {
-        underline = true,
-    })
+    -- vim.api.nvim_set_hl(0, "@lsp.mod.mutable", {
+    --     underline = true,
+    -- })
 
     vim.api.nvim_set_hl(0, "@lsp.typemod.variable.consuming.rust", {
-        underline = true,
-        fg = "#83a598",
+        -- underline = true,
+        -- fg = "#83a598",
+        bold = true,
     })
 
     vim.api.nvim_set_hl(0, "@lsp.typemod.keyword.unsafe.rust", {
-        underline = true,
+        -- underline = true,
         bold = true,
     })
 

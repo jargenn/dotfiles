@@ -32,6 +32,7 @@
       jt = "jj log -r 'tags()'";
       jjp = "jj git push";
 
+      nv = "nvim";
       l = "eza";
       ls = "eza";
       ll = "eza -l";
