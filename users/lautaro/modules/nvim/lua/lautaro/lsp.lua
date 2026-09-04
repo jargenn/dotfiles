@@ -20,6 +20,25 @@ vim.lsp.config("typescript-language-server", {
 })
 vim.lsp.enable("typescript-language-server")
 
+
+vim.lsp.config("nix-lsp", {
+    cmd = {
+        "nil",
+        "--stdio",
+    },
+
+    filetypes = {
+        "nix",
+    },
+
+    root_markers = {
+        "flake.nix",
+        "flake.lock",
+    },
+})
+
+vim.lsp.enable("nix-lsp")
+
 vim.lsp.config("deno-lsp", {
     cmd = {
         "deno",

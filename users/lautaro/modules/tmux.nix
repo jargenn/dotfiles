@@ -4,14 +4,13 @@
   programs.tmux = {
     enable = true;
     terminal = "xterm-256color";
-    shell = "${pkgs.fish}/bin/fish"; 
-
-  
+    shell = "${pkgs.fish}/bin/fish";
     extraConfig = ''
       set-option -ga terminal-overrides ",xterm-256color:Tc"
-      # 
+
+      #
       # Prefix
-      # 
+      #
       set -g prefix C-a
       unbind C-b
       bind C-a send-prefix
@@ -42,19 +41,12 @@
 
       # Status bar
       set -g status-left '[#S]'
-      set -g status-bg '#181818'
-      set -g status-fg white
       set-option -g status-position bottom
       set -g status-justify centre
 
-      set -g window-status-current-style bg='#d8ab1d',fg='#181818',bold
       set -g window-status-current-format " #I:#W:#F "
-
-      set -g window-status-style bg='#1D2021',fg=white
       set -g window-status-format " #I:#W#F "
       set -g window-status-separator "|"
-
-      set -g pane-active-border-style fg="#d8ab1d",bg='#181818'
 
       # Bells / activity
       set -g visual-activity off
@@ -88,6 +80,37 @@
       # Misc
       set -g allow-passthrough on
       set -ga update-environment TERM
+
+      # Theme
+      source-file ~/.config/tmux/theme.conf
+    '';
+
+  };
+  xdg.configFile = {
+    "tmux/light.conf".text = ''
+      set -g status-bg '#fbf1c7'
+      set -g status-fg '#3c3836'
+
+      set -g window-status-current-style 'bg=#d8ab1d,fg=#3c3836,bold'
+      set -g window-status-style 'bg=#ebdbb2,fg=#7c6f64'
+
+      set -g pane-active-border-style 'fg=#9d0006,bg=#fbf1c7'
+      set -g pane-border-style 'fg=#d5c4a1'
+
+      set -g message-style 'bg=#ebdbb2,fg=#3c3836'
+    '';
+
+    "tmux/dark.conf".text = ''
+      set -g status-bg '#181818'
+      set -g status-fg '#ebdbb2'
+
+      set -g window-status-current-style 'bg=#d8ab1d,fg=#181818,bold'
+      set -g window-status-style 'bg=#1D2021,fg=white'
+
+      set -g pane-active-border-style 'fg=#d8ab1d,bg=#181818'
+      set -g pane-border-style 'fg=#504945'
+
+      set -g message-style 'bg=#3c3836,fg=#ebdbb2'
     '';
   };
 }

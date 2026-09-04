@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.alacritty = {
     enable = true;
 
     settings = {
-      import = [
+      general.import = [
         "~/.config/alacritty/theme.toml"
       ];
 
