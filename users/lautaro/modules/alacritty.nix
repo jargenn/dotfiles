@@ -41,7 +41,7 @@
   xdg.configFile = {
     "alacritty/light.toml".text = ''
       [colors.primary]
-      background = "#fbf1c7"
+      background = "#f9f5d7"
       foreground = "#3c3836"
     '';
 
