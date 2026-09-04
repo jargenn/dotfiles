@@ -2,6 +2,7 @@ local languages = {
     "rust",
     "c",
     "typescript",
+    "css",
     "djot",
     "markdown",
     "javascript",

@@ -24,7 +24,8 @@ set.colorcolumn = "100"
 vim.o.completeopt = vim.o.completeopt:gsub(",?preview", "")
 vim.g.db_ui_auto_execute_table_helpers = 1
 
-local dark = os.date("*t").hour > 19
+local hour = os.date("*t").hour
+local dark = hour >= 19 or hour <= 8
 vim.o.background = dark and "dark" or "light"
 
 local colors = dark and {

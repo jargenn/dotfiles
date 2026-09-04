@@ -66,12 +66,18 @@ vim.lsp.config("vscode-css-languageserver", {
 
     filetypes = {
         "css",
+        "scss",
+        "less",
     },
 
     root_markers = {
+        "package.json",
         ".git",
     },
 })
+
+vim.lsp.enable("vscode-css-languageserver")
+
 
 vim.lsp.config("lua_ls", {
     cmd = { "lua-language-server" },

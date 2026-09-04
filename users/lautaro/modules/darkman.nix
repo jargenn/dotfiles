@@ -33,4 +33,10 @@
       '';
     };
   };
+  xdg.configFile."darkman/config.yaml".text = ''
+    lat: -27.47
+    lng: -58.83
+    dbusserver: true
+    portal: true
+  '';
 }
