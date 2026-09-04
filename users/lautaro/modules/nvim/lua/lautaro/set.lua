@@ -24,65 +24,40 @@ set.colorcolumn = "100"
 vim.o.completeopt = vim.o.completeopt:gsub(",?preview", "")
 vim.g.db_ui_auto_execute_table_helpers = 1
 
-local function set_custom_highlights()
-    vim.api.nvim_set_hl(0, "@lsp.typemod.comment.documentation.rust", {
-        fg = "#ff8c00",
-    })
+local dark = os.date("*t").hour > 19
+vim.o.background = dark and "dark" or "light"
 
-    vim.api.nvim_set_hl(0, "@lsp.type.comment.rust", {
-        fg = "#ff8c00",
-    })
+local colors = dark and {
+    comment = "#ff8c00",
+} or {
+    comment = "#af3a03",
+}
 
-    vim.api.nvim_set_hl(0, "@comment.rust", {
-        fg = "#ff8c00",
-    })
+local highlights = {
+    ["@lsp.typemod.comment.documentation"]   = { fg = colors.comment },
+    ["@lsp.type.comment"]                    = { fg = colors.comment },
+    ["@comment"]                             = { fg = colors.comment },
+    ["@comment.documentation"]               = { fg = colors.comment },
 
-    vim.api.nvim_set_hl(0, "@comment.documentation.rust", {
-        fg = "#ff8c00",
-    })
+    ["@lsp.typemod.variable.consuming.rust"] = { bold = true },
+    ["@lsp.typemod.keyword.unsafe.rust"]     = { bold = true },
 
-    -- vim.api.nvim_set_hl(0, "@lsp.mod.mutable", {
-    --     underline = true,
-    -- })
-
-    vim.api.nvim_set_hl(0, "@lsp.typemod.variable.consuming.rust", {
-        -- underline = true,
-        -- fg = "#83a598",
-        bold = true,
-    })
-
-    vim.api.nvim_set_hl(0, "@lsp.typemod.keyword.unsafe.rust", {
-        -- underline = true,
-        bold = true,
-    })
-
-    vim.api.nvim_set_hl(0, "@lsp.type.module.ocaml", {
+    ["@lsp.type.module.ocaml"]               = {
         italic = true,
         underline = true,
-    })
+    },
+    ["@lsp.type.constructor.ocaml"]          = { bold = true },
+    ["@lsp.type.operator.ocaml"]             = { bold = true },
+    ["@lsp.typemod.variable.readonly"]       = { underline = true },
+}
 
-    vim.api.nvim_set_hl(0, "@lsp.type.constructor.ocaml", {
-        bold = true,
-    })
-
-    vim.api.nvim_set_hl(0, "@lsp.type.operator.ocaml", {
-        bold = true,
-    })
-
-    vim.api.nvim_set_hl(0, "@lsp.typemod.variable.readonly.ocaml", {
-        underline = true,
-    })
-
-    vim.api.nvim_set_hl(0, "@lsp.typemod.property.readonly.java", {
-        underline = true,
-    })
+for group, opts in pairs(highlights) do
+    vim.api.nvim_set_hl(0, group, opts)
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-    callback = set_custom_highlights,
-})
-
-set_custom_highlights()
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--     callback = set_custom_highlights,
+-- })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function(args)
@@ -90,7 +65,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
             bufnr = args.buf,
             async = false,
             filter = function(client)
-                return client.supports_method("textDocument/formatting")
+                return client:supports_method('textDocument/formatting')
             end,
         })
     end,

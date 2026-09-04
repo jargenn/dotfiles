@@ -7,8 +7,6 @@ return {
                 contrast = "hard"
             })
 
-            local bg = os.date("*t").hour > 19 and "dark" or "light"
-            vim.o.background = bg
             vim.cmd([[colorscheme gruvbox]])
         end,
     },

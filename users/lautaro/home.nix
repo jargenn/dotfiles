@@ -43,5 +43,6 @@ let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
     ./modules/direnv.nix
     ./modules/tmux.nix
     ./modules/alacritty.nix
+    ./modules/darkman.nix
   ];
 }
