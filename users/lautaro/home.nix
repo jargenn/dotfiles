@@ -1,6 +1,8 @@
 { pkgs, inputs, ... }:
 
-let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
+let
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+in
 
 {
   home.username = "lautaro";
@@ -10,35 +12,39 @@ let unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}; in
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
 
-  home.packages = with pkgs; [
-    tree-sitter
-    ripgrep
-    fff
-    repgrep
-    wireshark
-    btop
-    papers
-    imagemagick
-    nil
-    zoom-us
-    zotero
-    fd
-    gcc
-    lua-language-server
-    eza
-    tree
-    wget
-    curl
-    unzip
-    htop
-    kitty
-  ] ++ [ unstable.opencode ];
+  home.packages =
+    with pkgs;
+    [
+      tree-sitter
+      ripgrep
+      fff
+      repgrep
+      wireshark
+      btop
+      papers
+      imagemagick
+      nil
+      zoom-us
+      zotero
+      fd
+      gcc
+      lua-language-server
+      eza
+      tree
+      wget
+      curl
+      unzip
+      htop
+      kitty
+    ]
+    ++ [ unstable.opencode ];
 
   imports = [
     ./modules/git.nix
     ./modules/jj.nix
     ./modules/fish.nix
     ./modules/helix.nix
+    ./modules/pi.nix
     ./modules/nvim.nix
     ./modules/direnv.nix
     ./modules/tmux.nix

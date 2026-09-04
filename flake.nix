@@ -13,6 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     jj-starship.url = "github:dmmulroy/jj-starship";
+    pi.url = "github:lukasl-dev/pi.nix";
   };
 
   outputs =
@@ -21,6 +22,7 @@
       nixpkgs,
       home-manager,
       jj-starship,
+      pi,
       ...
     }@inputs:
     let

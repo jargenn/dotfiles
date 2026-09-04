@@ -47,7 +47,7 @@
 
     "alacritty/dark.toml".text = ''
       [colors.primary]
-      background = "#282828"
+      background = "#181818"
       foreground = "#ebdbb2"
     '';
   };
