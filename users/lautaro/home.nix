@@ -44,11 +44,11 @@ in
     ./modules/jj.nix
     ./modules/fish.nix
     ./modules/helix.nix
-    ./modules/pi.nix
     ./modules/nvim.nix
     ./modules/direnv.nix
     ./modules/tmux.nix
     ./modules/alacritty.nix
+    ./modules/amp.nix
     ./modules/darkman.nix
   ];
 }
