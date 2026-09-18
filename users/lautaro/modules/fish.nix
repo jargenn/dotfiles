@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.fish = {
@@ -45,6 +45,22 @@
 
       fish_add_path $HOME/.cargo/bin
       fish_add_path $HOME/.amp/bin
+
+      set -g fish_color_normal normal
+      set -g fish_color_command blue
+      set -g fish_color_keyword magenta
+      set -g fish_color_quote green
+      set -g fish_color_redirection cyan
+      set -g fish_color_end green
+      set -g fish_color_error red
+      set -g fish_color_param cyan
+      set -g fish_color_comment brblack
+      set -g fish_color_operator yellow
+      set -g fish_color_escape magenta
+      set -g fish_color_autosuggestion brblack
+
+      set -g fish_color_selection --reverse
+      set -g fish_color_search_match --reverse
 
       ${builtins.readFile ./fns.fish}
     '';

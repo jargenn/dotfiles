@@ -88,16 +88,16 @@
   };
   xdg.configFile = {
     "tmux/light.conf".text = ''
-      set -g status-bg '#fbf1c7'
-      set -g status-fg '#3c3836'
+      set -g status-bg '#f7f7f7'
+      set -g status-fg '#1d2028'
 
       set -g window-status-current-style 'bg=#d8ab1d,fg=#3c3836,bold'
-      set -g window-status-style 'bg=#ebdbb2,fg=#7c6f64'
+      set -g window-status-style 'bg=#f7f7f7,fg=#7c6f64'
 
       set -g pane-active-border-style 'fg=#9d0006,bg=#fbf1c7'
       set -g pane-border-style 'fg=#d5c4a1'
 
-      set -g message-style 'bg=#ebdbb2,fg=#3c3836'
+      set -g message-style 'bg=#f7f7f7,fg=#3c3836'
     '';
 
     "tmux/dark.conf".text = ''

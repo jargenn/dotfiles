@@ -1,4 +1,3 @@
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -18,7 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Options
 local set = vim.opt
 
 vim.g.have_nerd_font = true
@@ -44,38 +42,6 @@ set.wrap = false
 set.colorcolumn = "100"
 vim.o.completeopt = vim.o.completeopt:gsub(",?preview", "")
 vim.g.db_ui_auto_execute_table_helpers = 1
-
-local hour = os.date("*t").hour
-local dark = hour >= 19 or hour <= 8
-vim.o.background = dark and "dark" or "light"
-
-local colors = dark and {
-    comment = "#ff8c00",
-} or {
-    comment = "#af3a03",
-}
-
-local highlights = {
-    ["@lsp.typemod.comment.documentation"]   = { fg = colors.comment },
-    ["@lsp.type.comment"]                    = { fg = colors.comment },
-    ["@comment"]                             = { fg = colors.comment },
-    ["@comment.documentation"]               = { fg = colors.comment },
-
-    ["@lsp.typemod.variable.consuming.rust"] = { bold = true },
-    ["@lsp.typemod.keyword.unsafe.rust"]     = { bold = true },
-
-    ["@lsp.type.module.ocaml"]               = {
-        italic = true,
-        underline = true,
-    },
-    ["@lsp.type.constructor.ocaml"]          = { bold = true },
-    ["@lsp.type.operator.ocaml"]             = { bold = true },
-    ["@lsp.typemod.variable.readonly"]       = { underline = true },
-}
-
-for group, opts in pairs(highlights) do
-    vim.api.nvim_set_hl(0, group, opts)
-end
 
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function(args)
@@ -260,7 +226,6 @@ require("lazy").setup({
                         dark0_hard = "#181818",
                     }
                 })
-                vim.cmd([[colorscheme gruvbox]])
             end,
         },
 
@@ -510,3 +475,40 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end, "Format")
     end,
 })
+
+
+local hour = os.date("*t").hour
+local dark = hour >= 19 or hour <= 8
+vim.o.background = dark and "dark" or "light"
+
+local colors = dark and {
+    comment = "#ff8c00",
+
+    vim.cmd([[colorscheme gruvbox]])
+} or {
+    comment = "#af3a03",
+
+    vim.cmd([[colorscheme alabaster]])
+}
+
+local highlights = {
+    ["@lsp.typemod.comment.documentation"]   = { fg = colors.comment },
+    ["@lsp.type.comment"]                    = { fg = colors.comment },
+    ["@comment"]                             = { fg = colors.comment },
+    ["@comment.documentation"]               = { fg = colors.comment },
+
+    ["@lsp.typemod.variable.consuming.rust"] = { bold = true },
+    ["@lsp.typemod.keyword.unsafe.rust"]     = { bold = true },
+
+    ["@lsp.type.module.ocaml"]               = {
+        italic = true,
+        underline = true,
+    },
+    ["@lsp.type.constructor.ocaml"]          = { bold = true },
+    ["@lsp.type.operator.ocaml"]             = { bold = true },
+    ["@lsp.typemod.variable.readonly"]       = { underline = true },
+}
+
+for group, opts in pairs(highlights) do
+    vim.api.nvim_set_hl(0, group, opts)
+end

@@ -44,7 +44,6 @@ in
     ./modules/git.nix
     ./modules/jj.nix
     ./modules/fish.nix
-    ./modules/helix.nix
     ./modules/nvim.nix
     ./modules/direnv.nix
     ./modules/tmux.nix

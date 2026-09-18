@@ -18,7 +18,7 @@
       nixpkgs,
       home-manager,
       jj-starship,
-      pi,
+      codex-cli-nix,
       ...
     }@inputs:
     let
