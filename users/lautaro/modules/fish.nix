@@ -44,6 +44,7 @@
       fish_vi_key_bindings
 
       fish_add_path $HOME/.cargo/bin
+      fish_add_path $HOME/.amp/bin
 
       ${builtins.readFile ./fns.fish}
     '';
@@ -59,4 +60,3 @@
     enableFishIntegration = true;
   };
 }
-

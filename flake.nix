@@ -8,12 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    helix = {
-      url = "github:helix-editor/helix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
     jj-starship.url = "github:dmmulroy/jj-starship";
-    pi.url = "github:lukasl-dev/pi.nix";
+    codex-cli-nix.url = "github:sadjow/codex-cli-nix";
   };
 
   outputs =

@@ -36,6 +36,7 @@ in
       unzip
       htop
       kitty
+      inputs.codex-cli-nix.packages.${pkgs.system}.default
     ]
     ++ [ unstable.opencode ];
 
