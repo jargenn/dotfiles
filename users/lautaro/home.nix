@@ -49,6 +49,7 @@ in
     ./modules/tmux.nix
     ./modules/alacritty.nix
     ./modules/amp.nix
+    ./modules/pi.nix
     ./modules/darkman.nix
   ];
 }
