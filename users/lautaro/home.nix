@@ -18,14 +18,12 @@ in
       tree-sitter
       ripgrep
       fff
+      obsidian
       repgrep
       wireshark
       btop
       papers
-      imagemagick
       nil
-      zoom-us
-      zotero
       fd
       gcc
       lua-language-server
@@ -35,8 +33,6 @@ in
       curl
       unzip
       htop
-      kitty
-      inputs.codex-cli-nix.packages.${pkgs.system}.default
     ]
     ++ [ unstable.opencode ];
 
@@ -48,7 +44,6 @@ in
     ./modules/direnv.nix
     ./modules/tmux.nix
     ./modules/alacritty.nix
-    ./modules/amp.nix
     ./modules/pi.nix
     ./modules/darkman.nix
   ];

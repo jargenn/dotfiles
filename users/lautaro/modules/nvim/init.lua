@@ -43,172 +43,6 @@ set.colorcolumn = "100"
 vim.o.completeopt = vim.o.completeopt:gsub(",?preview", "")
 vim.g.db_ui_auto_execute_table_helpers = 1
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function(args)
-        vim.lsp.buf.format({
-            bufnr = args.buf,
-            async = false,
-            filter = function(client)
-                return client:supports_method('textDocument/formatting')
-            end,
-        })
-    end,
-})
-
--- LSP
-vim.lsp.config("typescript-language-server", {
-    cmd = {
-        "pnpm",
-        "exec",
-        "typescript-language-server",
-        "--stdio",
-    },
-    filetypes = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-    },
-    root_markers = {
-        "package.json",
-        "tsconfig.json",
-    },
-})
-vim.lsp.enable("typescript-language-server")
-
-vim.lsp.config("nix-lsp", {
-    cmd = {
-        "nil",
-        "--stdio",
-    },
-    filetypes = {
-        "nix",
-    },
-    root_markers = {
-        "flake.nix",
-        "flake.lock",
-    },
-})
-vim.lsp.enable("nix-lsp")
-
-vim.lsp.config("deno-lsp", {
-    cmd = {
-        "deno",
-        "lsp",
-    },
-    filetypes = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-    },
-    root_markers = {
-        "deno.json",
-    },
-})
-vim.lsp.enable("deno-lsp")
-
-vim.lsp.config("vscode-css-languageserver", {
-    cmd = {
-        "vscode-css-languageserver",
-        "--stdio",
-    },
-    filetypes = {
-        "css",
-        "scss",
-        "less",
-    },
-    root_markers = {
-        "package.json",
-        ".git",
-    },
-})
-vim.lsp.enable("vscode-css-languageserver")
-
-vim.lsp.config("lua_ls", {
-    cmd = { "lua-language-server" },
-    filetypes = { "lua" },
-    root_markers = {
-        { ".emmyrc.json", ".luarc.json", ".luarc.jsonc" },
-        ".git",
-    },
-    settings = {
-        Lua = {
-            runtime = {
-                version = "LuaJIT",
-            },
-            workspace = {
-                checkThirdParty = false,
-                library = {
-                    vim.env.VIMRUNTIME,
-                },
-            },
-        },
-    },
-})
-vim.lsp.enable("lua_ls")
-
-vim.lsp.config("rust_analyzer", {
-    cmd = { "rust-analyzer" },
-    filetypes = { "rust" },
-    root_markers = {
-        "Cargo.toml",
-        "rust-project.json",
-    },
-})
-vim.lsp.enable("rust_analyzer")
-
-vim.lsp.config["tracey"] = {
-    cmd = { "tracey", "lsp" },
-    filetypes = { "rust", "typescript", "python", "go", "markdown" },
-    root_markers = { ".config/tracey/config.styx" },
-}
-vim.lsp.enable("tracey")
-
-vim.lsp.config("ocamllsp", {
-    cmd = { "ocamllsp" },
-    filetypes = {
-        "ocaml",
-        "ocaml.interface",
-        "ocaml.ocamllex",
-        "ocaml.ocamlyacc",
-    },
-    root_markers = {
-        "dune-project",
-        "dune-workspace",
-        ".git",
-    },
-})
-vim.lsp.enable("ocamllsp")
-
-vim.lsp.config("basedpyright", {
-    cmd = { "basedpyright-langserver", "--stdio" },
-    filetypes = { "python" },
-    root_markers = {
-        "pyproject.toml",
-        "setup.py",
-        "setup.cfg",
-        "requirements.txt",
-        "Pipfile",
-        ".git",
-    },
-})
-vim.lsp.enable("basedpyright")
-
-vim.lsp.config("ruff", {
-    cmd = { "ruff", "server" },
-    filetypes = { "python" },
-    root_markers = {
-        "pyproject.toml",
-        "ruff.toml",
-        ".ruff.toml",
-        ".git",
-    },
-})
-vim.lsp.enable("ruff")
-
-vim.diagnostic.config({ virtual_text = true })
-
 -- Plugins
 require("lazy").setup({
     change_detection = { notify = false },
@@ -395,18 +229,8 @@ map("<left>", "<C-w><left>", "Move to the left tab")
 map("<right>", "<C-w><right>", "Move to the right tab")
 map("<A-k>", ":m-2<CR>==", "Move the line above")
 map("<A-j>", ":m+1<CR>==", "Move the line below")
-map("<F8>", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", "Enable inlay hints")
 map("<leader>pv", vim.cmd.Ex, "Open the current folder")
 map("<C-g>", ":Git<CR>", "[G]it fugitive")
-
-map("gd", function()
-    vim.lsp.buf.definition()
-end, "Goto definition")
-
-map("<leader>gd", function()
-    vim.cmd("vsplit")
-    vim.lsp.buf.definition()
-end, "Goto definition in vsplit")
 
 map("<leader>o", function()
     vim.fn.jobstart({ "gh", "repo", "view", "--web" }, { detach = true })
@@ -443,70 +267,14 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("LspCodelens", { clear = true }),
-    callback = function(args)
-        vim.lsp.codelens.enable(true, { bufnr = args.buf })
-    end,
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
-    callback = function(event)
-        local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, {
-                buffer = event.buf,
-                desc = "LSP: " .. desc,
-            })
-        end
-
-        map("<space>e", vim.diagnostic.open_float, "Open diagnostic")
-        map("K", vim.lsp.buf.hover, "Hover")
-        map("gS", vim.lsp.buf.signature_help, "Signature help")
-        map("<leader>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
-        map("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
-        map("<leader>wl", function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end, "List workspace folders")
-        map("<leader>rn", vim.lsp.buf.rename, "Rename")
-        map("<leader>a", vim.lsp.buf.code_action, "Code action")
-        map("<leader>fo", function()
-            vim.lsp.buf.format({ async = true })
-        end, "Format")
-    end,
-})
-
-
 local hour = os.date("*t").hour
 local dark = hour >= 19 or hour <= 8
 vim.o.background = dark and "dark" or "light"
-
-local colors = dark and {
-    comment = "#ff8c00",
-
-    vim.cmd([[colorscheme gruvbox]])
-} or {
-    comment = "#af3a03",
-
-    vim.cmd([[colorscheme alabaster]])
-}
+vim.cmd([[colorscheme gruvbox]])
 
 local highlights = {
-    ["@lsp.typemod.comment.documentation"]   = { fg = colors.comment },
-    ["@lsp.type.comment"]                    = { fg = colors.comment },
-    ["@comment"]                             = { fg = colors.comment },
-    ["@comment.documentation"]               = { fg = colors.comment },
-
-    ["@lsp.typemod.variable.consuming.rust"] = { bold = true },
-    ["@lsp.typemod.keyword.unsafe.rust"]     = { bold = true },
-
-    ["@lsp.type.module.ocaml"]               = {
-        italic = true,
-        underline = true,
-    },
-    ["@lsp.type.constructor.ocaml"]          = { bold = true },
-    ["@lsp.type.operator.ocaml"]             = { bold = true },
-    ["@lsp.typemod.variable.readonly"]       = { underline = true },
+    ["@comment"]               = { fg = "#ff8c00"},
+    ["@comment.documentation"] = { fg = "#ff8c00" },
 }
 
 for group, opts in pairs(highlights) do

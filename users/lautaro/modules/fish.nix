@@ -44,7 +44,7 @@
       fish_vi_key_bindings
 
       fish_add_path $HOME/.cargo/bin
-      fish_add_path $HOME/.amp/bin
+      fish_add_path $HOME/.myown/bin
 
       set -g fish_color_normal normal
       set -g fish_color_command blue

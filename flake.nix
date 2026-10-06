@@ -9,7 +9,6 @@
     };
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
     jj-starship.url = "github:dmmulroy/jj-starship";
-    codex-cli-nix.url = "github:sadjow/codex-cli-nix";
     pi.url = "github:lukasl-dev/pi.nix";
   };
 
@@ -19,7 +18,6 @@
       nixpkgs,
       home-manager,
       jj-starship,
-      codex-cli-nix,
       pi,
       ...
     }@inputs:
