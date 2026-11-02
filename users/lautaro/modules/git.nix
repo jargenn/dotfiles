@@ -15,10 +15,10 @@
         helper = "store";
       };
       "credential \"https://github.com\"" = {
-        helper = "!/usr/bin/gh auth git-credential";
+        helper = "!${pkgs.gh}/bin/gh auth git-credential";
       };
       "credential \"https://gist.github.com\"" = {
-        helper = "!/usr/bin/gh auth git-credential";
+        helper = "!${pkgs.gh}/bin/gh auth git-credential";
       };
 
       core.editor = "nvim";
@@ -50,6 +50,7 @@
 
   home.packages = [
     pkgs.difftastic
+    pkgs.gh
     pkgs.mergiraf
   ];
 }

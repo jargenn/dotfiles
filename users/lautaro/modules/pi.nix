@@ -6,7 +6,8 @@
     enable = true;
     rules = "Be concise. I don't want the dirty fix first, my values align with correct and effective decisions";
     settings = {
-      model = "gpt-6-luna";
+      defaultModel = "gpt-6-luna";
+      defaultProvider = "openai";
     };
     jail = {
       enable = true;

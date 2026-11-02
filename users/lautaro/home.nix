@@ -16,6 +16,7 @@ in
     with pkgs;
     [
       tree-sitter
+      inputs.codex-cli-nix.packages.${pkgs.system}.default
       ripgrep
       fff
       obsidian
@@ -41,6 +42,7 @@ in
     ./modules/jj.nix
     ./modules/fish.nix
     ./modules/nvim.nix
+    ./modules/helix.nix
     ./modules/direnv.nix
     ./modules/tmux.nix
     ./modules/alacritty.nix
