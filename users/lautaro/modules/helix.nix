@@ -35,14 +35,24 @@
         "A-down" = "jump_view_down";
         "A-left" = "jump_view_left";
         "A-right" = "jump_view_right";
-        # Ported from the former Neovim LSP keymaps. Helix already binds
-        # gd, Space-k, Space-r, and Space-a to these standard LSP actions.
-        "gS" = "signature_help";
+        # LSP keymaps from 484f632, before their removal in c5743b7.
+        # Helix has no direct workspace add/remove/list commands.
+        K = "hover";
+        g = {
+          d = "goto_definition";
+          S = "signature_help";
+        };
+        F8 = ":toggle lsp.display-inlay-hints";
 
         space = {
           e = "diagnostics_picker";
-          f.o = "format";
-          g.d = [ "vsplit" "goto_definition" ];
+          a = "code_action";
+          r.n = "rename_symbol";
+          f.o = ":format";
+          g.d = [
+            "vsplit"
+            "goto_definition"
+          ];
         };
       };
     };

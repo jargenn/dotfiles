@@ -8,3 +8,4 @@ $ cd dotfiles
 
 $ home-manager switch --flake .#lautaro
 ```
+

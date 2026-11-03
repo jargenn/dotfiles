@@ -21,7 +21,7 @@
         helper = "!${pkgs.gh}/bin/gh auth git-credential";
       };
 
-      core.editor = "nvim";
+      core.editor = "hx";
 
       pull.rebase = true;
 

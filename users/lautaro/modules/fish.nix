@@ -32,7 +32,6 @@
       jt = "jj log -r 'tags()'";
       jjp = "jj git push";
 
-      nv = "nvim";
       l = "eza";
       ls = "eza";
       ll = "eza -l";
@@ -69,6 +68,16 @@
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
+    settings = {
+      auto_sync = false;
+      search_mode = "fuzzy";
+      filter_mode = "global";
+      style = "compact";
+      inline_height = 20;
+      show_preview = true;
+      enter_accept = false;
+      keymap_mode = "auto";
+    };
   };
 
   programs.zoxide = {

@@ -8,7 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
-    jj-starship.url = "github:dmmulroy/jj-starship";
     pi.url = "github:lukasl-dev/pi.nix";
     codex-cli-nix.url = "github:sadjow/codex-cli-nix";
   };
@@ -18,7 +17,6 @@
       self,
       nixpkgs,
       home-manager,
-      jj-starship,
       pi,
       ...
     }@inputs:
@@ -35,7 +33,6 @@
             system = "x86_64-linux";
 
             overlays = [
-              jj-starship.overlays.default
             ];
           };
 
