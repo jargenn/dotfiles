@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 
 let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 
 {
@@ -12,9 +12,14 @@ in
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
 
+  # Expose Nix-built graphics drivers to applications on non-NixOS hosts.
+  targets.genericLinux.enable = true;
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
+    nerd-fonts.iosevka
     tree-sitter
-    inputs.codex-cli-nix.packages.${pkgs.system}.default
+    inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
     ripgrep
     fff
     obsidian
