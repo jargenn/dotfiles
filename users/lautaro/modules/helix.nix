@@ -1,7 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.helix = {
     enable = true;
+    extraPackages = [ pkgs.nil ];
 
     settings = {
       theme = "gruvbox_dark_hard";
@@ -48,7 +49,11 @@
           e = "diagnostics_picker";
           a = "code_action";
           r.n = "rename_symbol";
-          f.o = ":format";
+          f = {
+            o = ":format";
+            f = "file_picker";
+            F = "file_picker_in_current_directory";
+          };
           g.d = [
             "vsplit"
             "goto_definition"

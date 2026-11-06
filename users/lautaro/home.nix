@@ -1,46 +1,47 @@
 { pkgs, inputs, ... }:
 
-let
-  unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
-
 {
-  home.username = "lautaro";
-  home.homeDirectory = "/home/lautaro";
-  home.stateVersion = "26.05";
-
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
-
-  # Expose Nix-built graphics drivers to applications on non-NixOS hosts.
+  nix.package = pkgs.nix;
+  nix.settings = {
+    extra-substituters = [ "https://cdn.tankosw.com/nix-cache" ];
+    extra-trusted-public-keys = [
+      "nix-cache:xoq2/B+lIYB/U1OKDKBngkGl3zCaJxCfxu8OAtD8E3I="
+    ];
+  };
   targets.genericLinux.enable = true;
   fonts.fontconfig.enable = true;
 
-  home.packages = with pkgs; [
-    nerd-fonts.iosevka
-    tree-sitter
-    inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ripgrep
-    fff
-    obsidian
-    repgrep
-    wireshark
-    btop
-    papers
-    nil
-    fd
-    gcc
-    lua-language-server
-    eza
-    tree
-    wget
-    curl
-    unzip
-    htop
-    nh
-    xclip
-    wl-clipboard
-  ];
+  home = {
+    username = "lautaro";
+    homeDirectory = "/home/lautaro";
+    stateVersion = "26.05";
+
+    packages = with pkgs; [
+      nerd-fonts.iosevka
+      tree-sitter
+      inputs.codex-cli-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+      ripgrep
+      statix
+      just
+      deadnix
+      repgrep
+      fastfetch
+      btop
+      fd
+      gcc
+      eza
+      tree
+      wget
+      curl
+      unzip
+      htop
+      nh
+      xclip
+      wl-clipboard
+    ];
+  };
 
   imports = [
     ./modules/git.nix

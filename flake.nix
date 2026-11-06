@@ -14,10 +14,8 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
-      pi,
       ...
     }@inputs:
     let
